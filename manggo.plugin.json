@@ -1,0 +1,258 @@
+{
+  "manifestVersion": 1,
+  "id": "edge-read-aloud-tts",
+  "name": "Microsoft TTS",
+  "version": "1.0",
+  "description": "使用 Microsoft Edge 大声朗读在线合成语音，添加服务即可使用。",
+  "icon": "edge.svg",
+  "permissions": [
+    "network"
+  ],
+  "runtime": {
+    "kind": "moejs",
+    "api": "manggo.plugin.v1",
+    "main": "main.js"
+  },
+  "services": [
+    {
+      "id": "speech",
+      "kind": "speech",
+      "displayName": "Microsoft TTS",
+      "entry": "tts",
+      "language": {
+        "auto": "auto",
+        "zh_CN": "zh-CN",
+        "zh_TW": "zh-TW",
+        "en_US": "en-US",
+        "ja_JP": "ja-JP",
+        "ko_KR": "ko-KR"
+      },
+      "config": [
+        {
+          "key": "voiceZhCN",
+          "label": "简体中文发音人",
+          "control": "select",
+          "default": "zh-CN-XiaoxiaoNeural",
+          "options": [
+            {
+              "label": "晓晓（女声）",
+              "value": "zh-CN-XiaoxiaoNeural"
+            },
+            {
+              "label": "晓伊（女声）",
+              "value": "zh-CN-XiaoyiNeural"
+            },
+            {
+              "label": "云希（男声）",
+              "value": "zh-CN-YunxiNeural"
+            },
+            {
+              "label": "云扬（男声）",
+              "value": "zh-CN-YunyangNeural"
+            }
+          ]
+        },
+        {
+          "key": "voiceZhTW",
+          "label": "繁体中文发音人",
+          "control": "select",
+          "default": "zh-TW-HsiaoChenNeural",
+          "options": [
+            {
+              "label": "曉臻（女聲）",
+              "value": "zh-TW-HsiaoChenNeural"
+            },
+            {
+              "label": "曉雨（女聲）",
+              "value": "zh-TW-HsiaoYuNeural"
+            },
+            {
+              "label": "雲哲（男聲）",
+              "value": "zh-TW-YunJheNeural"
+            }
+          ]
+        },
+        {
+          "key": "voiceEnUS",
+          "label": "英语（美国）发音人",
+          "control": "select",
+          "default": "en-US-JennyNeural",
+          "options": [
+            {
+              "label": "Jenny（女声）",
+              "value": "en-US-JennyNeural"
+            },
+            {
+              "label": "Aria（女声）",
+              "value": "en-US-AriaNeural"
+            },
+            {
+              "label": "Guy（男声）",
+              "value": "en-US-GuyNeural"
+            }
+          ]
+        },
+        {
+          "key": "voiceJaJP",
+          "label": "日语发音人",
+          "control": "select",
+          "default": "ja-JP-NanamiNeural",
+          "options": [
+            {
+              "label": "Nanami（女声）",
+              "value": "ja-JP-NanamiNeural"
+            },
+            {
+              "label": "Keita（男声）",
+              "value": "ja-JP-KeitaNeural"
+            }
+          ]
+        },
+        {
+          "key": "voiceKoKR",
+          "label": "韩语发音人",
+          "control": "select",
+          "default": "ko-KR-SunHiNeural",
+          "options": [
+            {
+              "label": "SunHi（女声）",
+              "value": "ko-KR-SunHiNeural"
+            },
+            {
+              "label": "InJoon（男声）",
+              "value": "ko-KR-InJoonNeural"
+            }
+          ]
+        },
+        {
+          "key": "rate",
+          "label": "语速",
+          "control": "select",
+          "default": 0,
+          "options": [
+            {
+              "label": "-50%",
+              "value": -50
+            },
+            {
+              "label": "-25%",
+              "value": -25
+            },
+            {
+              "label": "-10%",
+              "value": -10
+            },
+            {
+              "label": "默认（0%）",
+              "value": 0
+            },
+            {
+              "label": "+10%",
+              "value": 10
+            },
+            {
+              "label": "+25%",
+              "value": 25
+            },
+            {
+              "label": "+50%",
+              "value": 50
+            }
+          ]
+        },
+        {
+          "key": "pitch",
+          "label": "音调",
+          "control": "select",
+          "default": 0,
+          "options": [
+            {
+              "label": "-50 Hz",
+              "value": -50
+            },
+            {
+              "label": "-25 Hz",
+              "value": -25
+            },
+            {
+              "label": "-10 Hz",
+              "value": -10
+            },
+            {
+              "label": "默认（0 Hz）",
+              "value": 0
+            },
+            {
+              "label": "+10 Hz",
+              "value": 10
+            },
+            {
+              "label": "+25 Hz",
+              "value": 25
+            },
+            {
+              "label": "+50 Hz",
+              "value": 50
+            }
+          ]
+        },
+        {
+          "key": "volume",
+          "label": "音量",
+          "control": "select",
+          "default": 0,
+          "options": [
+            {
+              "label": "-50%",
+              "value": -50
+            },
+            {
+              "label": "-25%",
+              "value": -25
+            },
+            {
+              "label": "-10%",
+              "value": -10
+            },
+            {
+              "label": "默认（0%）",
+              "value": 0
+            },
+            {
+              "label": "+10%",
+              "value": 10
+            },
+            {
+              "label": "+25%",
+              "value": 25
+            },
+            {
+              "label": "+50%",
+              "value": 50
+            }
+          ]
+        },
+        {
+          "key": "outputFormat",
+          "label": "MP3 音质",
+          "control": "select",
+          "default": "audio-24khz-48kbitrate-mono-mp3",
+          "options": [
+            {
+              "label": "24 kHz / 48 kbps",
+              "value": "audio-24khz-48kbitrate-mono-mp3"
+            },
+            {
+              "label": "24 kHz / 96 kbps",
+              "value": "audio-24khz-96kbitrate-mono-mp3"
+            },
+            {
+              "label": "48 kHz / 192 kbps",
+              "value": "audio-48khz-192kbitrate-mono-mp3"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

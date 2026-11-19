@@ -3,11 +3,16 @@
   "id": "edge-read-aloud-tts",
   "name": "Microsoft TTS",
   "version": "1.0",
-  "description": "使用 Microsoft Edge 大声朗读在线合成语音，添加服务即可使用。",
+  "description": "使用 Microsoft Edge「大声朗读」在线合成语音，无需 API Key。支持简体中文、繁体中文、美式英语、日语和韩语，可选择发音人并调整语速、音调、音量和 MP3 音质。",
+  "author": "Pylogmon",
+  "homepage": "https://github.com/Pylogmon/manggo-plugin-microsoft-tts",
   "icon": "edge.svg",
   "permissions": [
     "network"
   ],
+  "requires": {
+    "minAppVersion": "1.3.5"
+  },
   "runtime": {
     "kind": "moejs",
     "api": "manggo.plugin.v1",

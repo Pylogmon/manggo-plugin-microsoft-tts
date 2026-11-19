@@ -1,6 +1,8 @@
 # Microsoft TTS
 
-通过 Microsoft Edge「大声朗读」在线合成语音。添加服务后即可使用默认设置，免 API Key。
+Microsoft TTS 是 Manggo 的语音插件，通过 Microsoft Edge「大声朗读」在线合成语音。添加服务后即可使用默认设置，无需 API Key。
+
+由 Pylogmon 维护。[插件主页](https://github.com/Pylogmon/manggo-plugin-microsoft-tts)
 
 ## 安装
 
@@ -14,6 +16,7 @@
 
 - 发音人可按语言分别选择，支持简体中文、繁体中文、英语（美国）、日语和韩语。
 - 语速、音量可调 ±50%，音调可调 ±50 Hz。MP3 默认音质为 24 kHz / 48 kbps。
+
 ## 打包
 
 ```sh

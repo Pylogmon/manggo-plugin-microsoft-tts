@@ -4,7 +4,7 @@
     {
       "version": "1.1.0",
       "url": "https://github.com/Pylogmon/manggo-plugin-microsoft-tts/releases/download/v1.1.0/manggo-plugin-microsoft-tts.mplugin",
-      "sha256": "f6ee867008654b87bab6c150d865031868e197a52b40a74581b224bd9fb9357e",
+      "sha256": "bc0297b4d9d13566029cb4b37a0f4bb9022fb05dd7aaddc46226689302f94b20",
       "requires": {
         "minAppVersion": "1.3.10"
       }

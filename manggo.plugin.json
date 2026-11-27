@@ -6,7 +6,7 @@
   "description": "使用 Microsoft Edge「大声朗读」在线合成语音，无需 API Key。支持 Manggo 的 14 个语言选项，可选择发音人并调整语速、音调、音量和 MP3 音质。",
   "author": "Pylogmon",
   "homepage": "https://github.com/Pylogmon/manggo-plugin-microsoft-tts",
-  "updateUrl": "https://raw.githubusercontent.com/Pylogmon/manggo-plugin-microsoft-tts/main/updates.json",
+  "updateUrl": "https://github.com/Pylogmon/manggo-plugin-microsoft-tts/releases/latest/download/updates.json",
   "icon": "edge.svg",
   "permissions": [
     "network"

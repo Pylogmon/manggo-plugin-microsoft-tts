@@ -119,7 +119,7 @@ test("sends the resolved Edge locale and voice in SSML and returns audio", async
 
 test("native update feed references releases of this plugin", () => {
   const feed = readJSON("../updates.json");
-  assert.equal(manifest.updateUrl, "https://raw.githubusercontent.com/Pylogmon/manggo-plugin-microsoft-tts/main/updates.json");
+  assert.equal(manifest.updateUrl, `${manifest.homepage}/releases/latest/download/updates.json`);
   assert.equal(feed.id, manifest.id);
   assert.ok(feed.versions.length);
   const versions = new Set();

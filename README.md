@@ -6,7 +6,7 @@ Microsoft TTS 是 Manggo 的语音插件，通过 Microsoft Edge「大声朗读�
 
 ## 安装
 
-需要 Manggo 1.3.5 及以上版本。使用插件需要 Manggo Pro。
+需要 Manggo 1.3.10 及以上版本。使用插件需要 Manggo Pro。
 
 1. 从 [GitHub Releases](https://github.com/Pylogmon/manggo-plugin-microsoft-tts/releases) 下载 `manggo-plugin-microsoft-tts.mplugin`，在 Manggo 的「插件管理」中安装。
 2. 到「语音服务」添加 **Microsoft TTS**。保留默认设置即可试听。
@@ -14,9 +14,9 @@ Microsoft TTS 是 Manggo 的语音插件，通过 Microsoft Edge「大声朗读�
 
 ## 检查更新
 
-从插件 **1.1.0** 起，在支持插件更新的 Manggo 中打开「插件管理」会自动检查更新。发现兼容的新版后，点击「可更新」查看发布说明并确认安装；原有的语音服务设置会保留。
+在支持插件更新的 Manggo 中，打开「插件管理」会自动检查更新。发现兼容的新版后，点击「可更新」查看发布说明并确认安装；原有的语音服务设置会保留。
 
-插件 **1.0** 没有更新地址，请下载新版并覆盖安装一次，不用先卸载。
+新版插件从[最新正式 Release 的 `updates.json` 附件](https://github.com/Pylogmon/manggo-plugin-microsoft-tts/releases/latest/download/updates.json)读取更新。已安装的插件仍使用包内原有的更新地址；如果旧版没有更新地址，或无法通过旧地址收到新版，可以直接覆盖安装，不用先卸载。
 
 ## 语言和发音人
 
@@ -33,9 +33,10 @@ Microsoft TTS 是 Manggo 的语音插件，通过 Microsoft Edge「大声朗读�
 
 生成的插件包位于 `dist/manggo-plugin-microsoft-tts.mplugin`。要发布新版：
 
-1. 保持插件 `id` 不变，递增 `manggo.plugin.json` 中的 `version`，打包后将 `.mplugin` 上传到对应版本（`v<version>`）的 GitHub Release。
-2. 计算**实际上传的插件包**的 SHA-256（例如 `sha256sum dist/manggo-plugin-microsoft-tts.mplugin`）。在 [`updates.json`](updates.json) 的 `versions` 中新增条目，填写和包内清单一致的 `version`、`requires`，以及公开的 HTTPS 下载地址 `url` 和 `sha256`；可用 `notes` 填写发布说明。
-3. 更新清单发布到 `main` 后，用已包含更新地址的旧版插件，在支持插件更新的 Manggo 中验证检查流程。不要在下载资产公开可用前把其版本写入更新清单。
+1. 保持插件 `id` 不变，递增 `manggo.plugin.json` 中的 `version`。打包并计算这份 `.mplugin` 的 SHA-256（例如 `sha256sum dist/manggo-plugin-microsoft-tts.mplugin`）。
+2. 在 [`updates.json`](updates.json) 的 `versions` 中新增条目，填写与包内清单一致的 `version`、`requires` 和该文件的 `sha256`。`url` 使用带版本标签的下载地址：`https://github.com/Pylogmon/manggo-plugin-microsoft-tts/releases/download/v<version>/manggo-plugin-microsoft-tts.mplugin`，不要用 `latest` 代替标签。可用 `notes` 填写发布说明。
+3. 将 `.mplugin` 和 **`updates.json`** 一起上传到 `v<version>` 的 GitHub Release 草稿，再发布为最新正式版本。每次发布都要上传这两个附件；只提交 `updates.json` 到 `main` 不会更新 Release 的附件。
+4. 确认 `releases/latest/download/updates.json` 可下载，再用已经包含新更新地址的旧版插件验证检查流程。如需让使用旧地址的用户自动迁移，也要更新 `main` 上的 `updates.json`，让旧客户端发现包含新地址的新版插件包。
 
 ### 开发验证
 

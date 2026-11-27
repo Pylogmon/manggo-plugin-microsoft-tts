@@ -1,5 +1,6 @@
 import { randomUUID } from "node:crypto";
 import { EDGE_MAJOR_VERSION, secMsGec, SEC_MS_GEC_VERSION, TRUSTED_CLIENT_TOKEN } from "./sec-ms-gec.js";
+import { resolveVoice } from "./voices.js";
 
 const EDGE_ENDPOINT = {
   url: "wss://api.msedgeservices.com/tts/cognitiveservices/websocket/v1",
@@ -26,21 +27,6 @@ const FORMATS = new Set([
   "audio-24khz-96kbitrate-mono-mp3",
   "audio-48khz-192kbitrate-mono-mp3",
 ]);
-const VOICES = {
-  "zh-CN": { key: "voiceZhCN", fallback: "XiaoxiaoNeural" },
-  "zh-TW": { key: "voiceZhTW", fallback: "HsiaoChenNeural" },
-  "en-US": { key: "voiceEnUS", fallback: "JennyNeural" },
-  "ja-JP": { key: "voiceJaJP", fallback: "NanamiNeural" },
-  "ko-KR": { key: "voiceKoKR", fallback: "SunHiNeural" },
-};
-const LANGUAGE_ALIASES = {
-  zh: "zh-CN",
-  "zh-hans": "zh-CN",
-  "zh-hant": "zh-TW",
-  en: "en-US",
-  ja: "ja-JP",
-  ko: "ko-KR",
-};
 const XML_ENTITIES = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&apos;" };
 const decoder = new TextDecoder();
 
@@ -50,7 +36,7 @@ export async function tts(text, language, { config, signal } = {}) {
   const input = text.replace(/[\x00-\x08\x0b\x0c\x0e-\x1f\uD800-\uDFFF\uFFFE\uFFFF]/gu, " ").trim();
   if (!input) throw new Error("请输入要朗读的文本。");
 
-  const settings = speechSettings(resolveLocale(language, input), config ?? {});
+  const settings = speechSettings(language, input, config ?? {});
   const parts = [];
   let length = 0;
   let endpoint = EDGE_ENDPOINT;
@@ -70,34 +56,11 @@ export async function tts(text, language, { config, signal } = {}) {
   return { bytes, format: "mp3" };
 }
 
-function resolveLocale(language, text) {
-  const tag = (language ?? "").trim().replaceAll("_", "-").toLowerCase();
-  if (!tag || tag === "auto") {
-    if (/[\u3040-\u30ff\u31f0-\u31ff\uff66-\uff9f]/u.test(text)) return "ja-JP";
-    if (/[\u1100-\u11ff\u3130-\u318f\uac00-\ud7af]/u.test(text)) return "ko-KR";
-    if (/[\u3400-\u9fff\uf900-\ufaff\u{20000}-\u{323af}]/u.test(text)) return "zh-CN";
-    return "en-US";
-  }
-
-  const locale = LANGUAGE_ALIASES[tag] ?? Object.keys(VOICES).find((key) => key.toLowerCase() === tag);
-  if (!Object.hasOwn(VOICES, locale)) {
-    throw new Error("Microsoft TTS 支持简体中文、繁体中文、英语（美国）、日语和韩语。");
-  }
-  return locale;
-}
-
-function speechSettings(locale, config) {
-  const { key, fallback } = VOICES[locale];
-  const saved = config[key];
-  let voice = fallback;
-  if (typeof saved === "string" && saved.startsWith(locale + "-")) {
-    const name = saved.slice(locale.length + 1);
-    if (/^[a-z][a-z0-9]*Neural$/i.test(name)) voice = name;
-  }
-
+function speechSettings(language, text, config) {
+  const { locale, name } = resolveVoice(language, text, config);
   return {
     locale,
-    voice: `Microsoft Server Speech Text to Speech Voice (${locale}, ${voice})`,
+    voice: `Microsoft Server Speech Text to Speech Voice (${locale}, ${name})`,
     rate: adjustment(config.rate, "%"),
     pitch: adjustment(config.pitch, "Hz"),
     volume: adjustment(config.volume, "%"),

@@ -1,0 +1,13 @@
+{
+  "id": "edge-read-aloud-tts",
+  "versions": [
+    {
+      "version": "1.0",
+      "url": "https://github.com/Pylogmon/manggo-plugin-microsoft-tts/releases/download/v1.0/manggo-plugin-microsoft-tts.mplugin",
+      "sha256": "d61a18e9721b317d887a6c091b5be07c2222d75ef5aa39430dabfa9f17198cf1",
+      "requires": {
+        "minAppVersion": "1.3.5"
+      }
+    }
+  ]
+}

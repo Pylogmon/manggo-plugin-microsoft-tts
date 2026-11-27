@@ -2,16 +2,17 @@
   "manifestVersion": 1,
   "id": "edge-read-aloud-tts",
   "name": "Microsoft TTS",
-  "version": "1.0",
-  "description": "使用 Microsoft Edge「大声朗读」在线合成语音，无需 API Key。支持简体中文、繁体中文、美式英语、日语和韩语，可选择发音人并调整语速、音调、音量和 MP3 音质。",
+  "version": "1.1.0",
+  "description": "使用 Microsoft Edge「大声朗读」在线合成语音，无需 API Key。支持 Manggo 的 14 个语言选项，可选择发音人并调整语速、音调、音量和 MP3 音质。",
   "author": "Pylogmon",
   "homepage": "https://github.com/Pylogmon/manggo-plugin-microsoft-tts",
+  "updateUrl": "https://raw.githubusercontent.com/Pylogmon/manggo-plugin-microsoft-tts/main/updates.json",
   "icon": "edge.svg",
   "permissions": [
     "network"
   ],
   "requires": {
-    "minAppVersion": "1.3.5"
+    "minAppVersion": "1.3.10"
   },
   "runtime": {
     "kind": "moejs",
@@ -30,9 +31,87 @@
         "zh_TW": "zh-TW",
         "en_US": "en-US",
         "ja_JP": "ja-JP",
-        "ko_KR": "ko-KR"
+        "ko_KR": "ko-KR",
+        "de_DE": "de-DE",
+        "fr_FR": "fr-FR",
+        "es_ES": "es-ES",
+        "it_IT": "it-IT",
+        "pt_BR": "pt-BR",
+        "pt_PT": "pt-PT",
+        "ru_RU": "ru-RU",
+        "uk_UA": "uk-UA",
+        "vi_VN": "vi-VN"
       },
       "config": [
+        {
+          "key": "autoLanguage",
+          "label": "未指定语言时使用",
+          "control": "select",
+          "default": "auto",
+          "description": "仅在 Manggo 不提供语言时使用，例如划词快捷键朗读。",
+          "options": [
+            {
+              "label": "自动判断",
+              "value": "auto"
+            },
+            {
+              "label": "简体中文",
+              "value": "zh-CN"
+            },
+            {
+              "label": "繁体中文",
+              "value": "zh-TW"
+            },
+            {
+              "label": "英语（美国）",
+              "value": "en-US"
+            },
+            {
+              "label": "日语",
+              "value": "ja-JP"
+            },
+            {
+              "label": "韩语",
+              "value": "ko-KR"
+            },
+            {
+              "label": "德语",
+              "value": "de-DE"
+            },
+            {
+              "label": "法语",
+              "value": "fr-FR"
+            },
+            {
+              "label": "西班牙语",
+              "value": "es-ES"
+            },
+            {
+              "label": "意大利语",
+              "value": "it-IT"
+            },
+            {
+              "label": "葡萄牙语（巴西）",
+              "value": "pt-BR"
+            },
+            {
+              "label": "葡萄牙语（葡萄牙）",
+              "value": "pt-PT"
+            },
+            {
+              "label": "俄语",
+              "value": "ru-RU"
+            },
+            {
+              "label": "乌克兰语",
+              "value": "uk-UA"
+            },
+            {
+              "label": "越南语",
+              "value": "vi-VN"
+            }
+          ]
+        },
         {
           "key": "voiceZhCN",
           "label": "简体中文发音人",
@@ -54,6 +133,14 @@
             {
               "label": "云扬（男声）",
               "value": "zh-CN-YunyangNeural"
+            },
+            {
+              "label": "Yunjian（男声）",
+              "value": "zh-CN-YunjianNeural"
+            },
+            {
+              "label": "Yunxia（男声）",
+              "value": "zh-CN-YunxiaNeural"
             }
           ]
         },
@@ -94,6 +181,62 @@
             {
               "label": "Guy（男声）",
               "value": "en-US-GuyNeural"
+            },
+            {
+              "label": "Ava（女声）",
+              "value": "en-US-AvaNeural"
+            },
+            {
+              "label": "Andrew（男声）",
+              "value": "en-US-AndrewNeural"
+            },
+            {
+              "label": "Emma（女声）",
+              "value": "en-US-EmmaNeural"
+            },
+            {
+              "label": "Brian（男声）",
+              "value": "en-US-BrianNeural"
+            },
+            {
+              "label": "Ana（女声）",
+              "value": "en-US-AnaNeural"
+            },
+            {
+              "label": "AndrewMultilingual（男声）",
+              "value": "en-US-AndrewMultilingualNeural"
+            },
+            {
+              "label": "AvaMultilingual（女声）",
+              "value": "en-US-AvaMultilingualNeural"
+            },
+            {
+              "label": "BrianMultilingual（男声）",
+              "value": "en-US-BrianMultilingualNeural"
+            },
+            {
+              "label": "Christopher（男声）",
+              "value": "en-US-ChristopherNeural"
+            },
+            {
+              "label": "EmmaMultilingual（女声）",
+              "value": "en-US-EmmaMultilingualNeural"
+            },
+            {
+              "label": "Eric（男声）",
+              "value": "en-US-EricNeural"
+            },
+            {
+              "label": "Michelle（女声）",
+              "value": "en-US-MichelleNeural"
+            },
+            {
+              "label": "Roger（男声）",
+              "value": "en-US-RogerNeural"
+            },
+            {
+              "label": "Steffan（男声）",
+              "value": "en-US-SteffanNeural"
             }
           ]
         },
@@ -126,6 +269,182 @@
             {
               "label": "InJoon（男声）",
               "value": "ko-KR-InJoonNeural"
+            },
+            {
+              "label": "HyunsuMultilingual（男声）",
+              "value": "ko-KR-HyunsuMultilingualNeural"
+            }
+          ]
+        },
+        {
+          "key": "voiceDeDE",
+          "label": "德语发音人",
+          "control": "select",
+          "default": "de-DE-TanjaNeural",
+          "options": [
+            {
+              "label": "Tanja（女声）",
+              "value": "de-DE-TanjaNeural"
+            },
+            {
+              "label": "Christoph（男声）",
+              "value": "de-DE-ChristophNeural"
+            }
+          ]
+        },
+        {
+          "key": "voiceFrFR",
+          "label": "法语发音人",
+          "control": "select",
+          "default": "fr-FR-DeniseNeural",
+          "options": [
+            {
+              "label": "Denise（女声）",
+              "value": "fr-FR-DeniseNeural"
+            },
+            {
+              "label": "VivienneMultilingual（女声）",
+              "value": "fr-FR-VivienneMultilingualNeural"
+            },
+            {
+              "label": "RemyMultilingual（男声）",
+              "value": "fr-FR-RemyMultilingualNeural"
+            },
+            {
+              "label": "Eloise（女声）",
+              "value": "fr-FR-EloiseNeural"
+            },
+            {
+              "label": "Henri（男声）",
+              "value": "fr-FR-HenriNeural"
+            }
+          ]
+        },
+        {
+          "key": "voiceEsES",
+          "label": "西班牙语发音人",
+          "control": "select",
+          "default": "es-ES-ElviraNeural",
+          "options": [
+            {
+              "label": "Elvira（女声）",
+              "value": "es-ES-ElviraNeural"
+            },
+            {
+              "label": "Ximena（女声）",
+              "value": "es-ES-XimenaNeural"
+            },
+            {
+              "label": "Alvaro（男声）",
+              "value": "es-ES-AlvaroNeural"
+            }
+          ]
+        },
+        {
+          "key": "voiceItIT",
+          "label": "意大利语发音人",
+          "control": "select",
+          "default": "it-IT-ElsaNeural",
+          "options": [
+            {
+              "label": "Elsa（女声）",
+              "value": "it-IT-ElsaNeural"
+            },
+            {
+              "label": "GiuseppeMultilingual（男声）",
+              "value": "it-IT-GiuseppeMultilingualNeural"
+            },
+            {
+              "label": "Diego（男声）",
+              "value": "it-IT-DiegoNeural"
+            },
+            {
+              "label": "Isabella（女声）",
+              "value": "it-IT-IsabellaNeural"
+            }
+          ]
+        },
+        {
+          "key": "voicePtBR",
+          "label": "葡萄牙语（巴西）发音人",
+          "control": "select",
+          "default": "pt-BR-FranciscaNeural",
+          "options": [
+            {
+              "label": "Francisca（女声）",
+              "value": "pt-BR-FranciscaNeural"
+            },
+            {
+              "label": "ThalitaMultilingual（女声）",
+              "value": "pt-BR-ThalitaMultilingualNeural"
+            },
+            {
+              "label": "Antonio（男声）",
+              "value": "pt-BR-AntonioNeural"
+            }
+          ]
+        },
+        {
+          "key": "voicePtPT",
+          "label": "葡萄牙语（葡萄牙）发音人",
+          "control": "select",
+          "default": "pt-PT-RaquelNeural",
+          "options": [
+            {
+              "label": "Raquel（女声）",
+              "value": "pt-PT-RaquelNeural"
+            },
+            {
+              "label": "Duarte（男声）",
+              "value": "pt-PT-DuarteNeural"
+            }
+          ]
+        },
+        {
+          "key": "voiceRuRU",
+          "label": "俄语发音人",
+          "control": "select",
+          "default": "ru-RU-SvetlanaNeural",
+          "options": [
+            {
+              "label": "Svetlana（女声）",
+              "value": "ru-RU-SvetlanaNeural"
+            },
+            {
+              "label": "Dmitry（男声）",
+              "value": "ru-RU-DmitryNeural"
+            }
+          ]
+        },
+        {
+          "key": "voiceUkUA",
+          "label": "乌克兰语发音人",
+          "control": "select",
+          "default": "uk-UA-PolinaNeural",
+          "options": [
+            {
+              "label": "Polina（女声）",
+              "value": "uk-UA-PolinaNeural"
+            },
+            {
+              "label": "Ostap（男声）",
+              "value": "uk-UA-OstapNeural"
+            }
+          ]
+        },
+        {
+          "key": "voiceViVN",
+          "label": "越南语发音人",
+          "control": "select",
+          "default": "vi-VN-HoaiMyNeural",
+          "options": [
+            {
+              "label": "HoaiMy（女声）",
+              "value": "vi-VN-HoaiMyNeural"
+            },
+            {
+              "label": "NamMinh（男声）",
+              "value": "vi-VN-NamMinhNeural"
             }
           ]
         },
